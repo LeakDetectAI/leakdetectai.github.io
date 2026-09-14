@@ -519,6 +519,20 @@
       "type": "submission-service",
       "primaryUrl": "https://aclrollingreview.org/dates",
       "regexHint": "aclrollingreview\\.org/dates"
+    },
+    {
+      "id": "icaic",
+      "name": "ICAIC",
+      "type": "conference",
+      "primaryUrl": "https://icaic.gyancity.com/cfp.html",
+      "regexHint": "icaic\\.gyancity\\.com/"
+    },
+    {
+      "id": "aaiml",
+      "name": "AAIML",
+      "type": "conference",
+      "primaryUrl": "https://aaiml.net/sub.html",
+      "regexHint": "aaiml\\.net/"
     }
   ]
 }

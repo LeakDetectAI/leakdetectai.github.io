@@ -2170,5 +2170,81 @@
       "officialUrl": "https://www.scimagojr.com/journalsearch.php?q=21101278441&tip=sid"
     },
     "note": "Journal submission policies differ from conference cycles. No issue-specific deadlines have been recorded. Consult the journal website."
+  },
+  {
+    "id": "icaic-2027",
+    "name": "ICAIC",
+    "fullName": "IEEE International Conference on AI in Cybersecurity",
+    "area": "Security & Privacy",
+    "url": "https://icaic.gyancity.com/cfp.html",
+    "type": "conference",
+    "year": 2027,
+    "timezone": "Not specified by official source",
+    "cycle": "Main conference",
+    "note": "6th edition: March 3–5, 2027, University of Houston, USA. Acceptance notification follows review; no fixed date is published. Registration: January 15, 2027. Use the official IEEE conference template linked from the submission instructions. No paper cutoff time or time zone is specified.",
+    "observations": [
+      {
+        "name": "Official CFP / submission dates",
+        "url": "https://icaic.gyancity.com/cfp.html",
+        "authority": "official",
+        "checked": "2026-09-14",
+        "paper": "2026-12-30",
+        "abstract": null,
+        "decision": null,
+        "earlyReject": null,
+        "reviewsReleased": null,
+        "cameraReady": null
+      },
+      {
+        "name": "Official IEEE template and submission instructions",
+        "url": "https://icaic.gyancity.com/submission.html",
+        "authority": "official",
+        "checked": "2026-09-14"
+      }
+    ],
+    "rank": {
+      "system": "CORE",
+      "value": null,
+      "edition": "ICORE2026",
+      "status": "No matching entry found",
+      "checked": "2026-09-14",
+      "url": "https://portal.core.edu.au/conf-ranks/?search=ICAIC&by=all&source=ICORE2026",
+      "note": "No matching entry found by acronym or title search. IEEE publication does not establish a CORE grade."
+    }
+  },
+  {
+    "id": "aaiml-2027",
+    "name": "AAIML",
+    "fullName": "International Conference on Advances in Artificial Intelligence and Machine Learning",
+    "area": "Machine Learning",
+    "url": "https://aaiml.net/sub.html",
+    "type": "conference",
+    "year": 2027,
+    "timezone": "Not specified by official source",
+    "cycle": "Main conference",
+    "note": "2nd edition: March 29–31, 2027, Nihon University, Tokyo, Japan. IEEE conference template (LaTeX uses IEEEtran conference mode); anonymize for double-blind review. Full papers: 6 pages including references, up to 10 with extra-page charges. Abstract-only presentation is a separate track, not full-paper abstract registration. Registration: November 30, 2026. No paper cutoff time or time zone is specified.",
+    "observations": [
+      {
+        "name": "Official CFP / submission dates",
+        "url": "https://aaiml.net/sub.html",
+        "authority": "official",
+        "checked": "2026-09-14",
+        "paper": "2026-10-10",
+        "abstract": null,
+        "decision": "2026-11-10",
+        "earlyReject": null,
+        "reviewsReleased": null,
+        "cameraReady": null
+      }
+    ],
+    "rank": {
+      "system": "CORE",
+      "value": null,
+      "edition": "ICORE2026",
+      "status": "No matching entry found",
+      "checked": "2026-09-14",
+      "url": "https://portal.core.edu.au/conf-ranks/?search=AAIML&by=all&source=ICORE2026",
+      "note": "No matching entry found by acronym or title search. IEEE publication does not establish a CORE grade."
+    }
   }
 ]
