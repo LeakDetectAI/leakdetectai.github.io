@@ -11,8 +11,10 @@ function render() {
   $('verified').textContent = all.filter(v => v.resolved.verified).length;
   $('last-refresh').textContent = new Date(now).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'});
   const query = $('search').value.trim().toLowerCase();
-  const ranking = $('ranking').value;
   const type = $('venue-type').value;
+  $('ranking').disabled = type === 'workshop';
+  if (type === 'workshop') $('ranking').value = 'all';
+  const ranking = $('ranking').value;
   const filtered = all.filter(v => (type === 'all' || v.type === type) && (ranking === 'all' || (ranking === 'unknown' ? (!v.rank?.value || ['user-supplied','secondary-source'].includes(v.rank?.verification)) : `${v.rank?.system}:${v.rank?.value}` === ranking)) && (area === 'all' || v.area === area) && (!$('verified-only').checked || v.resolved.verified) && `${v.name} ${v.fullName} ${v.area} ${v.parentVenue?.name || ''}`.toLowerCase().includes(query));
   filtered.sort((a,b) => $('sort').value === 'name' ? a.name.localeCompare(b.name) : deadlineOrder(a, now) - deadlineOrder(b, now) || a.name.localeCompare(b.name));
   const journalCount = filtered.filter(v => v.type === 'journal').length;
@@ -20,11 +22,11 @@ function render() {
   const programCount = filtered.filter(v => v.workshopKind === 'program').length;
   const eventCount = filtered.length - journalCount - workshopCount - programCount;
   $('result-count').textContent = `${filtered.length} ${filtered.length === 1 ? 'tracked record' : 'tracked records'} · ${eventCount} conferences · ${workshopCount} workshops · ${programCount} workshop programs · ${journalCount} journals · ${area === 'all' ? 'All research areas' : area}`;
-  $('cards').innerHTML = filtered.length ? groupedCards(filtered, type) : '<div class="empty"><h2>No matching venues</h2><p>Try another search or clear your filters.</p><button id="reset">Clear filters</button></div>';
+  $('cards').innerHTML = filtered.length ? groupedCards(filtered) : '<div class="empty"><h2>No matching venues</h2><p>Try another search or clear your filters.</p><button id="reset">Clear filters</button></div>';
   $('reset')?.addEventListener('click', () => { $('search').value=''; $('verified-only').checked=false; $('ranking').value='all'; $('venue-type').value='all'; setArea('all'); });
 }
 function deadlineOrder(v, now) { const time = Date.parse(v.resolved.paper); return Number.isFinite(time) ? (time < now ? time + 1e13 : time) : Infinity; }
-function groupedCards(records, type) {
+function groupedCards(records) {
   const section = (label, items) => items.length ? `<section class="record-group"><h2>${escape(label)}</h2>${items.map(card).join('')}</section>` : '';
   const workshops = records.filter(v => v.type === 'workshop');
   const workshopGroups = ['individual', 'program'].map(kind => {
@@ -65,7 +67,7 @@ function rankDetails(v) {
   if (v.type === 'workshop') return '';
   const rank = v.rank;
   if (!rank) return '<p>Ranking not verified.</p>';
-  const heading = rank.system === 'SCImago' ? 'SCImago Journal & Country Rank' : v.type === 'workshop' ? 'ICORE workshop-series lookup' : 'CORE / ICORE conference ranking';
+  const heading = rank.system === 'SCImago' ? 'SCImago Journal & Country Rank' : 'CORE / ICORE conference ranking';
   const parent = v.parentVenue ? `<p>Parent venue: <a href="${safeUrl(v.parentVenue.url)}" target="_blank" rel="noopener noreferrer">${escape(v.parentVenue.name)}${v.parentVenue.coreRank ? ` (${escape(v.parentVenue.coreRank)})` : ' (rank not stored)'}</a>. Parent rank is not inherited by this workshop.</p>` : '';
   const verification = rank.verification === 'user-supplied' ? 'User supplied; not independently verified' : rank.verification === 'exact-workshop-series-not-found' ? 'Exact workshop series not found' : `${rank.verification === 'indexed-snapshot' ? 'Indexed source checked' : rank.verification === 'secondary-source' ? 'Secondary source checked' : 'Checked'} ${escape(rank.checked)}`;
   return `<section class="ranking-details"><h3>${heading}</h3><p><strong>${escape(rank.value || rank.status || 'Not verified')}</strong> · ${escape(rank.edition)}</p>${parent}${rank.category ? `<p>Category / scope: ${escape(rank.category)}</p>` : ''}${rank.system === 'SCImago' ? `<p>SJR score: ${escape(rank.sjr ?? 'Not recorded')} · Metric year: ${escape(rank.metricYear ?? 'Not recorded')}</p>` : ''}${rank.note ? `<p>${escape(rank.note)}</p>` : ''}${rank.officialUrl ? `<p><a href="${safeUrl(rank.officialUrl)}" target="_blank" rel="noopener noreferrer">Official SCImago record ↗</a></p>` : ''}<p><a href="${safeUrl(rank.url)}" target="_blank" rel="noopener noreferrer">Ranking source ↗</a> · ${verification}</p></section>`;
@@ -73,7 +75,11 @@ function rankDetails(v) {
 function setArea(value) { area=value; document.querySelectorAll('[data-area]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.area === area)));render(); }
 $('areas').addEventListener('click', e => { const b=e.target.closest('[data-area]'); if(b) setArea(b.dataset.area); });
 ['search','sort','verified-only','ranking','venue-type'].forEach(id => $(id).addEventListener(id==='search' ? 'input' : 'change', render));
-function load() { venues = embeddedVenues; render(); }
+function load() {
+  venues = embeddedVenues;
+  if (new URLSearchParams(window.location.search).get('type') === 'workshop') $('venue-type').value = 'workshop';
+  render();
+}
 load();setInterval(()=>{if(venues.length) render();},60000);
 if (document.modelContext?.registerTool) {
   const lifecycle = new AbortController();
