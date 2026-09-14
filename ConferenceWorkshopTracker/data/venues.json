@@ -451,7 +451,7 @@
       }
     ],
     "year": 2027,
-    "note": "Official EuroS&P 2027 page lists Madrid, July 5-9, 2027, but no official submission deadline was visible in the crawled page. The EuroS&P 2026 official research-paper deadlines are stored as a separate reference cycle; the 2027 discovery date remains unverified until the 2027 CFP appears.",
+    "note": "Official EuroS&P 2027 page lists Madrid, July 5-9, 2027, but no official submission deadline was visible in the crawled page. The 2027 discovery date remains unverified until the 2027 CFP appears.",
     "type": "conference",
     "rank": {
       "system": "CORE",
@@ -463,40 +463,6 @@
     },
     "timezone": "AoE (UTC−12)",
     "cycle": "2027 event page / discovery deadline"
-  },
-  {
-    "id": "eurosp-2026-reference",
-    "name": "EuroS&P",
-    "fullName": "IEEE European Symposium on Security and Privacy",
-    "url": "https://eurosp2026.ieee-security.org/",
-    "area": "Security & Privacy",
-    "observations": [
-      {
-        "name": "Official EuroS&P 2026 important dates",
-        "url": "https://eurosp2026.ieee-security.org/",
-        "authority": "official",
-        "checked": "2026-09-14",
-        "abstract": "2025-11-13T23:59:59-12:00",
-        "paper": "2025-11-20T23:59:59-12:00",
-        "earlyReject": "2026-01-16T23:59:59-12:00",
-        "reviewsReleased": "2026-02-11",
-        "decision": "2026-03-05T23:59:59-12:00",
-        "cameraReady": "2026-04-23T23:59:59-12:00"
-      }
-    ],
-    "type": "conference",
-    "rank": {
-      "system": "CORE",
-      "value": "A",
-      "edition": "ICORE2026",
-      "url": "https://portal.core.edu.au/conf-ranks/2185/",
-      "checked": "2026-09-14",
-      "matchedTitle": "IEEE European Symposium on Security and Privacy"
-    },
-    "year": 2026,
-    "timezone": "AoE (UTC−12)",
-    "cycle": "Previous-year research papers reference",
-    "note": "Previous-year official reference cycle. EuroS&P 2027 has an official event page, but no 2027 research-paper CFP deadline was visible on the checked page."
   },
   {
     "name": "CSF",
@@ -772,7 +738,7 @@
   },
   {
     "id": "12",
-    "name": "SaTML",
+    "name": "IEEE SaTML",
     "fullName": "IEEE Conference on Secure and Trustworthy Machine Learning",
     "url": "https://satml.org/call-for-papers/",
     "area": "Security & Privacy",

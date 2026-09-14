@@ -23,9 +23,9 @@ Visit http://localhost:4173, or open index.html directly. Both load the same emb
 
 ## Maintain the catalogue
 
-Edit `data/venues.json`, run `node scripts/build.mjs`, commit the source and generated `tracker.js`, and push. GitHub Actions also regenerates the bundle before publishing. The site uses a **manual snapshot**, not automatic scraping. The catalogue includes 46 venues across 63 records and is a suggested starting set, not a confirmed personal list. Fifty-two submission records have recorded dates; the remainder intentionally show “Not recorded.” Missing dates do not imply that a CFP has not been published. CORE badges use the official ICORE2026 edition, checked 14 September 2026. All 30 conferences were searched; 27 have matched entries and SaTML, AACL and EACL have no matching entry found. Two starter journals, TIFS and JMLR, have historical 2024 SCImago best-quartile and SJR values from indexed official tables. Direct SCImago access returned HTTP 403, so these are explicitly not latest-edition verifications.
+Edit `data/venues.json`, run `node scripts/build.mjs`, commit the source and generated `tracker.js`, and push. GitHub Actions also regenerates the bundle before publishing. The site uses a **manual snapshot**, not automatic scraping. The catalogue includes 48 venues across 64 records and is a suggested starting set, not a confirmed personal list. Fifty-two submission records have recorded dates; the remainder intentionally show “Not recorded.” Missing dates do not imply that a CFP has not been published. CORE badges use the official ICORE2026 edition, checked 14 September 2026. All 30 conferences were searched; 27 have matched entries and SaTML, AACL and EACL have no matching entry found. Two starter journals, TIFS and JMLR, have historical 2024 SCImago best-quartile and SJR values from indexed official tables. Direct SCImago access returned HTTP 403, so these are explicitly not latest-edition verifications.
 
-Use SecDeadlines, AI Deadlines and WikiCFP for discovery. For verification, check the official main conference page first, then look for Call for Papers, Important Dates, submission, or dates pages. Review the official CFP, or the applicable ARR/OpenReview page, before adding an official observation. All observations in one record must refer to the same edition, track and cycle. Create another record with a unique ID for another cycle and set its `cycle` label. The starter records cover selected upcoming cycles, not complete submission histories. The browser recalculates countdowns from the visitor's current time while the page is open.
+Use SecDeadlines, AI Deadlines and WikiCFP for discovery. For verification, check the official main conference page first, then look for Call for Papers, Important Dates, submission, or dates pages. For IEEE venues, also check the official IEEE conference directory and the relevant IEEE society page. Review the official CFP, or the applicable ARR/OpenReview page, before adding an official observation. All observations in one record must refer to the same edition, track and cycle. Create another record with a unique ID for another cycle and set its `cycle` label. The starter records cover selected upcoming cycles, not complete submission histories. The browser recalculates countdowns from the visitor's current time while the page is open.
 
 Use `data/source-links.json` as the regex-friendly source registry. It stores the best discovery feeds, ranking sources, official URL templates, and primary official websites for conferences, workshops, and journals. Prefer its official URL templates first, then fall back to discovery feeds when a new year's official page has not been found yet.
 
@@ -39,6 +39,7 @@ Workshops show their host conference without ranking badges. Use `workshopKind` 
 
 Seed date sources (checked 14 September 2026):
 
+- IEEE conference directory: https://www.ieee.org/conferences/
 - IEEE S&P: https://sp2027.ieee-security.org/cfpapers.html
 - USENIX Security '27 Cycle 1/2: https://www.usenix.org/conference/usenixsecurity27/call-for-papers
 - CCS 2026 review cycles: https://www.sigsac.org/ccs/CCS2026/call-for/call-for-papers.html
@@ -51,7 +52,6 @@ Seed date sources (checked 14 September 2026):
 - ESORICS 2026 winter/spring cycles: https://sites.google.com/di.uniroma1.it/esorics2026/call-for/papers?authuser=0
 - ASIACCS 2027 cycles: https://asiaccs2027.cityu.edu.mo/important-dates/index.html
 - EuroS&P 2027 event page: https://eurosp2027.ieee-security.org/
-- EuroS&P 2026 reference cycle: https://eurosp2026.ieee-security.org/
 - AAAI-27 main technical track: https://aaai.org/conference/aaai/aaai-27/
 - EMNLP/AACL/EACL/NAACL/COLING ARR submission and commitment dates, plus ACL 2027 month-only listing: https://aclrollingreview.org/dates
 - ICML future meetings: https://icml.cc/Conferences/FutureMeetings

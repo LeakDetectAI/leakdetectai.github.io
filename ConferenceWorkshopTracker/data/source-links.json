@@ -96,6 +96,11 @@
       "regexHint": "usenix\\.org/conference/usenixsecurity\\d{2}/call-for-papers"
     },
     {
+      "venue": "IEEE-hosted conferences",
+      "template": "https://www.ieee-security.org/",
+      "regexHint": "(ieee-security\\.org|ieee\\.org|computer\\.org|signalprocessingsociety\\.org)"
+    },
+    {
       "venue": "IEEE S&P",
       "template": "https://sp{year}.ieee-security.org/cfpapers.html",
       "regexHint": "sp20\\d{2}\\.ieee-security\\.org/cfpapers\\.html"
@@ -203,6 +208,14 @@
     }
   ],
   "officialVenueSources": [
+    {
+      "id": "ieee",
+      "name": "IEEE",
+      "type": "official_society_or_call_page",
+      "primaryUrl": "https://www.ieee.org/conferences/",
+      "secondaryUrl": "https://www.computer.org/conferences",
+      "regexHint": "(ieee\\.org/conferences|computer\\.org/conferences|ieee-security\\.org|signalprocessingsociety\\.org)"
+    },
     {
       "id": "ieee-sp",
       "name": "IEEE S&P",
