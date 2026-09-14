@@ -53,23 +53,34 @@ a:focus {
     background: #f7fafb;
 }
 
-.profile-name {
-    margin: 0;
+.sidebar-profile {
+    display: block;
     color: var(--ink);
-    font-size: 1.45rem;
-    line-height: 1.15;
+    margin-bottom: 1.35rem;
+}
+
+.profile-name {
+    display: block;
+    margin: 0.75rem 0 0.35rem;
+    color: var(--ink);
+    font-size: 1.42rem;
+    font-weight: 900;
+    line-height: 1.12;
 }
 
 .profile-role {
-    margin: 0.55rem 0 1.3rem;
+    display: block;
     color: var(--muted);
-    font-weight: 700;
+    max-width: 210px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1.42;
 }
 
 .nav-links {
     display: grid;
     gap: 0.45rem;
-    margin: 1.4rem 0;
+    margin: 0 0 1.4rem;
 }
 
 .nav-links a {
@@ -83,10 +94,10 @@ a:focus {
 
 .nav-links a[href*="ConferenceWorkshopTracker"] {
     padding: 0.36rem 0.58rem;
-    border-left: 4px solid #dc2626;
+    border-left: 4px solid #16a34a;
     border-radius: 6px;
-    background: #fef2f2;
-    color: #b91c1c;
+    background: #ecfdf3;
+    color: #166534;
 }
 
 .nav-icon {
@@ -143,6 +154,18 @@ main {
 .hero {
     max-width: 840px;
     padding-bottom: 1rem;
+}
+
+.profile-photo {
+    display: block;
+    width: min(132px, 56vw);
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center 28%;
+    border-radius: 50%;
+    margin: 0;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 22px rgba(31, 41, 55, 0.12);
 }
 
 .eyebrow {
