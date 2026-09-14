@@ -73,9 +73,27 @@ a:focus {
 }
 
 .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
     width: fit-content;
     color: var(--ink);
     font-weight: 750;
+}
+
+.nav-links a[href*="ConferenceWorkshopTracker"] {
+    padding: 0.36rem 0.58rem;
+    border-left: 4px solid #dc2626;
+    border-radius: 6px;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.nav-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    object-fit: contain;
+    flex: 0 0 auto;
 }
 
 .nav-links a[aria-current="page"] {
@@ -106,17 +124,9 @@ a:focus {
 }
 
 .link-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     width: 1.35rem;
     height: 1.35rem;
-    border-radius: 50%;
-    background: #eef6f5;
-    color: var(--accent-strong);
-    font-size: 0.72rem;
-    font-weight: 900;
-    line-height: 1;
+    object-fit: contain;
     flex: 0 0 auto;
 }
 

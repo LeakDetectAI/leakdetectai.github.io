@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 1,
+  "checked": "2026-09-14",
+  "purpose": "Source registry for deadline/ranking discovery and regex-based official-site checks.",
+  "priorityOrder": [
+    "official_venue_site",
+    "official_submission_platform",
+    "official_society_or_call_page",
+    "trusted_deadline_aggregator",
+    "ranking_metadata_source",
+    "bibliographic_metadata_source"
+  ],
+  "discoveryFeeds": [
+    {
+      "name": "SecDeadlines",
+      "use": "Security and privacy conference/workshop discovery",
+      "url": "https://sec-deadlines.github.io/",
+      "repository": "https://github.com/sec-deadlines/sec-deadlines.github.io",
+      "regexHint": "sec-deadlines\\.github\\.io|github\\.com/sec-deadlines/sec-deadlines\\.github\\.io"
+    },
+    {
+      "name": "AI Deadlines",
+      "use": "Machine learning, AI, NLP, and vision deadline discovery",
+      "url": "https://aideadlin.es/",
+      "repository": "https://github.com/paperswithcode/ai-deadlines",
+      "regexHint": "aideadlin\\.es|github\\.com/paperswithcode/ai-deadlines"
+    },
+    {
+      "name": "WikiCFP",
+      "use": "Broad CFP discovery only; verify against official pages before storing as official",
+      "url": "http://www.wikicfp.com/cfp/",
+      "regexHint": "wikicfp\\.com/cfp"
+    },
+    {
+      "name": "OpenReview",
+      "use": "Submission platform and venue metadata for ICLR, workshops, AISTATS, and many ML venues",
+      "url": "https://openreview.net/",
+      "regexHint": "openreview\\.net/(group|forum)\\?id="
+    },
+    {
+      "name": "ACL Rolling Review",
+      "use": "ARR cycles, ACL-family final ARR submission dates, and commitment dates",
+      "url": "https://aclrollingreview.org/dates",
+      "regexHint": "aclrollingreview\\.org/dates"
+    }
+  ],
+  "rankingSources": [
+    {
+      "name": "CORE / ICORE Rankings",
+      "use": "Conference ranking metadata",
+      "url": "https://portal.core.edu.au/conf-ranks/",
+      "regexHint": "portal\\.core\\.edu\\.au/conf-ranks"
+    },
+    {
+      "name": "SCImago Journal & Country Rank",
+      "use": "Journal quartile and SJR metadata",
+      "url": "https://www.scimagojr.com/journalrank.php",
+      "regexHint": "scimagojr\\.com/(journalrank|journalsearch)\\.php"
+    },
+    {
+      "name": "DBLP",
+      "use": "Venue names, editions, and publication history",
+      "url": "https://dblp.org/",
+      "regexHint": "dblp\\.org/(db|search)"
+    }
+  ],
+  "officialUrlTemplates": [
+    {
+      "venue": "NeurIPS",
+      "template": "https://neurips.cc/Conferences/{year}/Dates",
+      "regexHint": "neurips\\.cc/Conferences/20\\d{2}/Dates"
+    },
+    {
+      "venue": "ICLR",
+      "template": "https://iclr.cc/Conferences/{year}/Dates",
+      "regexHint": "iclr\\.cc/Conferences/20\\d{2}/Dates"
+    },
+    {
+      "venue": "ICLR Workshops",
+      "template": "https://iclr.cc/Conferences/{year}/WorkshopGuidelines",
+      "regexHint": "iclr\\.cc/Conferences/20\\d{2}/WorkshopGuidelines"
+    },
+    {
+      "venue": "AISTATS",
+      "template": "https://virtual.aistats.org/Conferences/{year}/CallForPapers",
+      "regexHint": "virtual\\.aistats\\.org/Conferences/20\\d{2}/CallForPapers"
+    },
+    {
+      "venue": "INSTICC venues",
+      "template": "https://{venue}.scitevents.org/ImportantDates.aspx",
+      "regexHint": "(icissp|icaart|icores|iotbds|closer|icpram|secrypt)\\.scitevents\\.org/ImportantDates\\.aspx"
+    },
+    {
+      "venue": "USENIX Security",
+      "template": "https://www.usenix.org/conference/usenixsecurity{yy}/call-for-papers",
+      "regexHint": "usenix\\.org/conference/usenixsecurity\\d{2}/call-for-papers"
+    },
+    {
+      "venue": "IEEE S&P",
+      "template": "https://sp{year}.ieee-security.org/cfpapers.html",
+      "regexHint": "sp20\\d{2}\\.ieee-security\\.org/cfpapers\\.html"
+    },
+    {
+      "venue": "EuroS&P",
+      "template": "https://eurosp{year}.ieee-security.org/",
+      "regexHint": "eurosp20\\d{2}\\.ieee-security\\.org"
+    },
+    {
+      "venue": "CSF",
+      "template": "https://www.ieee-security.org/TC/CSF{year}/",
+      "historicalTemplate": "https://www.ieee-security.org/CSFWweb/",
+      "regexHint": "ieee-security\\.org/(TC/CSF20\\d{2}|CSFWweb)"
+    },
+    {
+      "venue": "ACL-family workshops",
+      "template": "https://www.aclweb.org/portal/content/joint-call-workshops-proposals-{year}",
+      "regexHint": "aclweb\\.org/portal/content/joint-call-workshops-proposals-20\\d{2}"
+    },
+    {
+      "venue": "NAACL",
+      "template": "https://{year}.naacl.org/",
+      "regexHint": "20\\d{2}\\.naacl\\.org"
+    },
+    {
+      "venue": "COLING",
+      "template": "https://{year}.coling-iccl.org/",
+      "regexHint": "20\\d{2}\\.coling-iccl\\.org"
+    },
+    {
+      "venue": "EMNLP",
+      "template": "https://{year}.emnlp.org/",
+      "regexHint": "20\\d{2}\\.emnlp\\.org"
+    },
+    {
+      "venue": "AAAI Workshops",
+      "template": "https://aaai.org/conference/aaai/aaai-{yy}/workshops-call/",
+      "regexHint": "aaai\\.org/conference/aaai/aaai-\\d{2}/workshops-call"
+    },
+    {
+      "venue": "AAAI",
+      "template": "https://aaai.org/conference/aaai/aaai-{yy}/",
+      "regexHint": "aaai\\.org/conference/aaai/(aaai-\\d{2}/?)?"
+    },
+    {
+      "venue": "ACSAC",
+      "template": "https://www.acsac.org/{year}/submissions/papers/",
+      "regexHint": "acsac\\.org/20\\d{2}/submissions(/papers)?"
+    },
+    {
+      "venue": "AACL",
+      "template": "https://{year}.aaclnet.org/",
+      "regexHint": "20\\d{2}\\.aaclnet\\.org"
+    },
+    {
+      "venue": "EACL",
+      "template": "https://{year}.eacl.org/",
+      "regexHint": "20\\d{2}\\.eacl\\.org"
+    },
+    {
+      "venue": "PETS",
+      "template": "https://petsymposium.org/cfp{yy}.php",
+      "regexHint": "petsymposium\\.org/cfp\\d{2}\\.php"
+    },
+    {
+      "venue": "RAID",
+      "template": "https://raid{year}.org/call.html",
+      "regexHint": "raid20\\d{2}\\.org/(call\\.html|cfp|call-for-papers)"
+    },
+    {
+      "venue": "SaTML",
+      "template": "https://satml.org/call-for-papers/",
+      "regexHint": "satml\\.org/(call-for-papers/?|20\\d{2})"
+    },
+    {
+      "venue": "CCS",
+      "template": "https://www.sigsac.org/ccs/CCS{year}/call-for/call-for-papers.html",
+      "regexHint": "sigsac\\.org/ccs/CCS20\\d{2}/call-for/call-for-papers\\.html|sigsac\\.org/ccs\\.html"
+    },
+    {
+      "venue": "NDSS",
+      "template": "https://www.ndss-symposium.org/ndss{year}/submissions/call-for-papers/",
+      "regexHint": "ndss-symposium\\.org/ndss20\\d{2}/submissions/call-for-papers"
+    },
+    {
+      "venue": "ESORICS",
+      "template": "https://sites.google.com/di.uniroma1.it/esorics{year}/call-for/papers",
+      "regexHint": "esorics20\\d{2}|esorics\\.org|sites\\.google\\.com/.+esorics20\\d{2}/call-for/papers"
+    },
+    {
+      "venue": "AsiaCCS",
+      "template": "https://asiaccs{year}.cityu.edu.mo/important-dates/index.html",
+      "regexHint": "asiaccs20\\d{2}\\.[^/]+/(important-dates|call-for-papers)/index\\.html|asiaccs20\\d{2}"
+    },
+    {
+      "venue": "ICML",
+      "template": "https://icml.cc/Conferences/FutureMeetings",
+      "regexHint": "icml\\.cc/Conferences/(FutureMeetings|20\\d{2}/Dates)"
+    },
+    {
+      "venue": "IJCAI",
+      "template": "https://www.ijcai.org/future_conferences",
+      "regexHint": "ijcai\\.org/(future_conferences|20\\d{2})"
+    }
+  ],
+  "officialVenueSources": [
+    {
+      "id": "ieee-sp",
+      "name": "IEEE S&P",
+      "type": "conference",
+      "primaryUrl": "https://sp2027.ieee-security.org/cfpapers.html",
+      "regexHint": "sp20\\d{2}\\.ieee-security\\.org/cfpapers\\.html"
+    },
+    {
+      "id": "usenix-security",
+      "name": "USENIX Security",
+      "type": "conference",
+      "primaryUrl": "https://www.usenix.org/conference/usenixsecurity27/call-for-papers",
+      "regexHint": "usenix\\.org/conference/usenixsecurity\\d{2}/call-for-papers"
+    },
+    {
+      "id": "ccs",
+      "name": "CCS",
+      "type": "conference",
+      "primaryUrl": "https://www.sigsac.org/ccs/CCS2026/call-for/call-for-papers.html",
+      "regexHint": "sigsac\\.org/ccs/CCS20\\d{2}/call-for/call-for-papers\\.html|sigsac\\.org/ccs\\.html"
+    },
+    {
+      "id": "ndss",
+      "name": "NDSS",
+      "type": "conference",
+      "primaryUrl": "https://www.ndss-symposium.org/ndss2027/submissions/call-for-papers/",
+      "regexHint": "ndss-symposium\\.org/ndss20\\d{2}/submissions/call-for-papers"
+    },
+    {
+      "id": "pets",
+      "name": "PETS",
+      "type": "conference",
+      "primaryUrl": "https://petsymposium.org/cfp27.php",
+      "regexHint": "petsymposium\\.org/cfp\\d{2}\\.php"
+    },
+    {
+      "id": "raid",
+      "name": "RAID",
+      "type": "conference",
+      "primaryUrl": "https://raid2026.org/call.html",
+      "regexHint": "raid20\\d{2}\\.org/(call\\.html|cfp|call-for-papers)"
+    },
+    {
+      "id": "eurosp",
+      "name": "EuroS&P",
+      "type": "conference",
+      "primaryUrl": "https://eurosp2027.ieee-security.org/",
+      "regexHint": "eurosp20\\d{2}\\.ieee-security\\.org",
+      "previousYearUrl": "https://eurosp2026.ieee-security.org/"
+    },
+    {
+      "id": "csf",
+      "name": "CSF",
+      "type": "conference",
+      "primaryUrl": "https://www.ieee-security.org/TC/CSF2027/",
+      "historicalUrl": "https://www.ieee-security.org/CSFWweb/",
+      "regexHint": "ieee-security\\.org/(TC/CSF20\\d{2}|CSFWweb)"
+    },
+    {
+      "id": "acsac",
+      "name": "ACSAC",
+      "type": "conference",
+      "primaryUrl": "https://www.acsac.org/2026/submissions/papers/",
+      "regexHint": "acsac\\.org/20\\d{2}/submissions(/papers)?"
+    },
+    {
+      "id": "esorics",
+      "name": "ESORICS",
+      "type": "conference",
+      "primaryUrl": "https://sites.google.com/di.uniroma1.it/esorics2026/call-for/papers?authuser=0",
+      "regexHint": "esorics20\\d{2}|esorics\\.org|sites\\.google\\.com/.+esorics20\\d{2}/call-for/papers"
+    },
+    {
+      "id": "asiaccs",
+      "name": "AsiaCCS",
+      "type": "conference",
+      "primaryUrl": "https://asiaccs2027.cityu.edu.mo/important-dates/index.html",
+      "regexHint": "asiaccs20\\d{2}\\.[^/]+/(important-dates|call-for-papers)/index\\.html|asiaccs20\\d{2}"
+    },
+    {
+      "id": "satml",
+      "name": "SaTML",
+      "type": "conference",
+      "primaryUrl": "https://satml.org/call-for-papers/",
+      "regexHint": "satml\\.org/(call-for-papers/?|20\\d{2})"
+    },
+    {
+      "id": "neurips",
+      "name": "NeurIPS",
+      "type": "conference",
+      "primaryUrl": "https://neurips.cc/Conferences/2026/Dates",
+      "regexHint": "neurips\\.cc/Conferences/20\\d{2}/Dates"
+    },
+    {
+      "id": "icml",
+      "name": "ICML",
+      "type": "conference",
+      "primaryUrl": "https://icml.cc/Conferences/FutureMeetings",
+      "regexHint": "icml\\.cc/Conferences/(FutureMeetings|20\\d{2}/Dates)"
+    },
+    {
+      "id": "iclr",
+      "name": "ICLR",
+      "type": "conference",
+      "primaryUrl": "https://iclr.cc/Conferences/2027/Dates",
+      "regexHint": "iclr\\.cc/Conferences/20\\d{2}/Dates"
+    },
+    {
+      "id": "aistats",
+      "name": "AISTATS",
+      "type": "conference",
+      "primaryUrl": "https://virtual.aistats.org/Conferences/2027/CallForPapers",
+      "regexHint": "virtual\\.aistats\\.org/Conferences/20\\d{2}/CallForPapers|aistats\\.org"
+    },
+    {
+      "id": "aaai",
+      "name": "AAAI",
+      "type": "conference",
+      "primaryUrl": "https://aaai.org/conference/aaai/aaai-27/",
+      "regexHint": "aaai\\.org/conference/aaai/(aaai-\\d{2}/?)?"
+    },
+    {
+      "id": "ijcai",
+      "name": "IJCAI",
+      "type": "conference",
+      "primaryUrl": "https://www.ijcai.org/future_conferences",
+      "regexHint": "ijcai\\.org/(future_conferences|20\\d{2})"
+    },
+    {
+      "id": "acl",
+      "name": "ACL",
+      "type": "conference",
+      "primaryUrl": "https://www.aclweb.org/portal/",
+      "regexHint": "aclweb\\.org|20\\d{2}\\.aclweb\\.org"
+    },
+    {
+      "id": "emnlp",
+      "name": "EMNLP",
+      "type": "conference",
+      "primaryUrl": "https://2026.emnlp.org/",
+      "regexHint": "20\\d{2}\\.emnlp\\.org"
+    },
+    {
+      "id": "naacl",
+      "name": "NAACL",
+      "type": "conference",
+      "primaryUrl": "https://2027.naacl.org/",
+      "regexHint": "20\\d{2}\\.naacl\\.org"
+    },
+    {
+      "id": "coling",
+      "name": "COLING",
+      "type": "conference",
+      "primaryUrl": "https://2027.coling-iccl.org/",
+      "regexHint": "20\\d{2}\\.coling-iccl\\.org"
+    },
+    {
+      "id": "insticc-icissp",
+      "name": "ICISSP",
+      "type": "conference",
+      "primaryUrl": "https://icissp.scitevents.org/ImportantDates.aspx",
+      "regexHint": "icissp\\.scitevents\\.org/ImportantDates\\.aspx"
+    },
+    {
+      "id": "insticc-icaart",
+      "name": "ICAART",
+      "type": "conference",
+      "primaryUrl": "https://icaart.scitevents.org/ImportantDates.aspx",
+      "regexHint": "icaart\\.scitevents\\.org/ImportantDates\\.aspx"
+    },
+    {
+      "id": "insticc-icores",
+      "name": "ICORES",
+      "type": "conference",
+      "primaryUrl": "https://icores.scitevents.org/ImportantDates.aspx",
+      "regexHint": "icores\\.scitevents\\.org/ImportantDates\\.aspx"
+    },
+    {
+      "id": "insticc-iotbds",
+      "name": "IoTBDS",
+      "type": "conference",
+      "primaryUrl": "https://iotbds.scitevents.org/ImportantDates.aspx",
+      "regexHint": "iotbds\\.scitevents\\.org/ImportantDates\\.aspx"
+    },
+    {
+      "id": "insticc-closer",
+      "name": "CLOSER",
+      "type": "conference",
+      "primaryUrl": "https://closer.scitevents.org/ImportantDates.aspx",
+      "regexHint": "closer\\.scitevents\\.org/ImportantDates\\.aspx"
+    },
+    {
+      "id": "insticc-icpram",
+      "name": "ICPRAM",
+      "type": "conference",
+      "primaryUrl": "https://icpram.scitevents.org/ImportantDates.aspx",
+      "regexHint": "icpram\\.scitevents\\.org/ImportantDates\\.aspx"
+    },
+    {
+      "id": "insticc-secrypt",
+      "name": "SECRYPT",
+      "type": "conference",
+      "primaryUrl": "https://secrypt.scitevents.org/ImportantDates.aspx",
+      "regexHint": "secrypt\\.scitevents\\.org/ImportantDates\\.aspx"
+    },
+    {
+      "id": "flmsec-neurips-2026",
+      "name": "FLMSec",
+      "type": "workshop",
+      "primaryUrl": "https://flmsec.github.io/",
+      "regexHint": "flmsec\\.github\\.io"
+    },
+    {
+      "id": "opaque-models-privacy-neurips-2026",
+      "name": "Privacy in the Era of Large Opaque Models",
+      "type": "workshop",
+      "primaryUrl": "https://neurips-workshop2026.github.io/foundation_model_agentic_privacy/",
+      "regexHint": "neurips-workshop2026\\.github\\.io/foundation_model_agentic_privacy"
+    },
+    {
+      "id": "infpriv-neurips-2026",
+      "name": "InfPriv",
+      "type": "workshop",
+      "primaryUrl": "https://beyond-private-training.ai.studio/",
+      "regexHint": "beyond-private-training\\.ai\\.studio|openreview\\.net/group\\?id=NeurIPS\\.cc/2026/Workshop/InfPriv"
+    },
+    {
+      "id": "aaai-2027-workshops",
+      "name": "AAAI-27 Workshops",
+      "type": "workshop",
+      "primaryUrl": "https://aaai.org/conference/aaai/aaai-27/workshops-call/",
+      "regexHint": "aaai\\.org/conference/aaai/aaai-\\d{2}/workshops-call"
+    },
+    {
+      "id": "acl-family-2027-workshops",
+      "name": "ACL-family 2027 Workshops",
+      "type": "workshop",
+      "primaryUrl": "https://www.aclweb.org/portal/content/joint-call-workshops-proposals-2027",
+      "regexHint": "aclweb\\.org/portal/content/joint-call-workshops-proposals-20\\d{2}"
+    },
+    {
+      "id": "iclr-2027-workshops",
+      "name": "ICLR 2027 Workshops",
+      "type": "workshop",
+      "primaryUrl": "https://iclr.cc/Conferences/2027/WorkshopGuidelines",
+      "regexHint": "iclr\\.cc/Conferences/20\\d{2}/WorkshopGuidelines"
+    },
+    {
+      "id": "tifs",
+      "name": "TIFS",
+      "type": "journal",
+      "primaryUrl": "https://signalprocessingsociety.org/publications-resources/ieee-transactions-information-forensics-and-security",
+      "regexHint": "signalprocessingsociety\\.org/.+ieee-transactions-information-forensics-and-security"
+    },
+    {
+      "id": "jmlr",
+      "name": "JMLR",
+      "type": "journal",
+      "primaryUrl": "https://www.jmlr.org/",
+      "regexHint": "jmlr\\.org"
+    },
+    {
+      "id": "tacl",
+      "name": "TACL",
+      "type": "journal",
+      "primaryUrl": "https://transacl.org/",
+      "regexHint": "transacl\\.org"
+    },
+    {
+      "id": "cl",
+      "name": "CL",
+      "type": "journal",
+      "primaryUrl": "https://direct.mit.edu/coli",
+      "regexHint": "direct\\.mit\\.edu/coli"
+    },
+    {
+      "id": "acm-tops",
+      "name": "ACM TOPS",
+      "type": "journal",
+      "primaryUrl": "https://dl.acm.org/journal/tops",
+      "regexHint": "dl\\.acm\\.org/journal/tops"
+    },
+    {
+      "id": "jbd",
+      "name": "JBD",
+      "type": "journal",
+      "primaryUrl": "https://journalofbigdata.springeropen.com/",
+      "regexHint": "journalofbigdata\\.springeropen\\.com"
+    },
+    {
+      "id": "tmlr",
+      "name": "TMLR",
+      "type": "journal",
+      "primaryUrl": "https://jmlr.org/tmlr/",
+      "regexHint": "jmlr\\.org/tmlr"
+    },
+    {
+      "id": "aacl",
+      "name": "AACL",
+      "type": "conference",
+      "primaryUrl": "https://2026.aaclnet.org/",
+      "regexHint": "20\\d{2}\\.aaclnet\\.org"
+    },
+    {
+      "id": "eacl",
+      "name": "EACL",
+      "type": "conference",
+      "primaryUrl": "https://2027.eacl.org/",
+      "regexHint": "20\\d{2}\\.eacl\\.org"
+    },
+    {
+      "id": "acl-rolling-review",
+      "name": "ACL Rolling Review",
+      "type": "submission-service",
+      "primaryUrl": "https://aclrollingreview.org/dates",
+      "regexHint": "aclrollingreview\\.org/dates"
+    }
+  ]
+}
